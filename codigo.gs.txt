@@ -1,0 +1,14 @@
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile("main")
+
+}
+
+function aggCliente(nombreCliente, telCliente, kit, xevo, contrato, plan, perfil, tecnicoNombre, comentario) {
+  const libro = SpreadsheetApp.openById("1kwDMqHIRpv2eyKT9nN1mR5lq1rQJl7vZtwjGEgZy_7M")
+  const hoja = libro.getSheetByName("BDCLIENT")
+  hoja.appendRow([new Date(),
+    nombreCliente, telCliente, kit, xevo, contrato, plan, perfil, tecnicoNombre, comentario]
+  )
+
+
+}

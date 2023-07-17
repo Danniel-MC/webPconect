@@ -1,21 +1,197 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Formulario de ejemplo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Planeta Conect</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 </head>
+
 <body>
-  <h1>Formulario de ejemplo</h1>
+  <div class="container">
+    <div class="card">
+      <div class="card-header card text-center">
+        <h1>Sistema de registro de clientes</h1>
+      </div>
+      <div class="card-body">
 
-  <form id="formulario">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required><br>
+        <!-- INICIO DATOS DEL CLIENTE -->
+        <div class="row mb-3">
+          <div class="">
+            <h4>Datos del cliente</h4>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="question1" class="form-label">Nombre</label>
+            <input
+                  type="text"
+                  class="form-control"
+                  id="nombreCliente"
+                  name="nombreCliente"
+                  placeholder="Nombre del cliente"
+                />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="question2" class="form-label">Telefono</label>
+            <input
+                  type="text"
+                  class="form-control"
+                  id="telCliente"
+                  name="telCliente"
+                  placeholder="Telefono del cliente"
+                />
+          </div>
+        </div>
+        <!-- FIN DATOS DEL CLIENTE -->
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br>
+        <!-- COMIENZO PARTE DE EQUIPOS DE INTERNET -->
+        <div class="row mb-3">
+          <div class="">
+            <h4>Datos del equipo</h4>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="question1" class="form-label">KIT SATELITAL</label>
+            <input
+                  type="text"
+                  class="form-control"
+                  id="kit"
+                  name="question1"
+                  placeholder="Escribe algo..."
+                />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="question2" class="form-label">SISTEMA XEVO</label>
+            <input
+                  type="text"
+                  class="form-control"
+                  id="xevo"
+                  name="question2"
+                  placeholder="Escribe algo..."
+                />
+          </div>
+        </div>
 
-    <input type="submit" value="Enviar">
-  </form>
+        <div class="row mb-3">
+          <div class="col-12">
+            <label for="question3" class="form-label">TIPO CONTRATO </label>
+            <input
+                  type="text"
+                  class="form-control"
+                  id="contrato"
+                  name="question3"
+                  placeholder="Escribe algo..."
+                />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-12">
+            <label for="question4" class="form-label"
+                  >PLAN CONTRATADO
+                </label>
+            <input
+                  type="text"
+                  class="form-control"
+                  id="plan"
+                  name="question4"
+                  placeholder="Escribe algo..."
+                />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-12">
+            <label for="question5" class="form-label"
+                  >PERFIL CREADO (internet basico)
+                </label>
+            <input
+                  type="text"
+                  class="form-control"
+                  id="perfil"
+                  name="question5"
+                  placeholder="Escribe algo..."
+                />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="form-group col-md-6">
+            <label for="question1" class="form-label"
+                  >Tecnico encargado
+                </label>
+            <input
+                  type="text"
+                  class="form-control"
+                  id="tecnicoNombre"
+                  name="question1"
+                  placeholder="Escribe algo..."
+                  required
+                />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="question2" class="form-label">Comentario</label>
 
-  <script src="script.js"></script>
+            <textarea
+                  type="text"
+                  class="form-control"
+                  id="comentario"
+                  name="question2"
+                  placeholder="Escribe algo..."
+                  rows="2"
+                ></textarea>
+          </div>
+        </div>
+        <button id="btnRegistrar" class="btn btn-primary">
+              Registrar cliente
+            </button>
+      </div>
+      <div class="card-footer text-muted text-center">
+        <label id="msg">Fecha y Hora de registro:</label>
+        <label id="currentDateTime"></label>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var today = new Date();
+      var dd = today.getDate();
+      var MM = today.getMonth() + 1;
+      var yyyy = today.getFullYear();
+      var hh = today.getHours();
+      var mm = today.getMinutes();
+
+      var currentDateTime = dd + "-" + MM + "-" + yyyy + " " + hh + ":" + mm;
+      document.getElementById("currentDateTime").innerHTML = currentDateTime;
+
+
+// SCRIPT PARA ACCIONAR EL EVENTO DEL BOTON
+      document
+        .getElementById("btnRegistrar")
+        .addEventListener("click", registrarCliente);
+
+      function registrarCliente() {
+        var nombreCliente = document.getElementById("nombreCliente").value;
+         var telCliente = document.getElementById("telCliente").value;
+         var kit = document.getElementById("kit").value;
+         var xevo = document.getElementById("xevo").value;
+        var contrato = document.getElementById("contrato").value;
+        var plan = document.getElementById("plan").value;
+        var perfil = document.getElementById("perfil").value;
+        var tecnicoNombre = document.getElementById("tecnicoNombre").value;
+        var comentario = document.getElementById("comentario").value;
+        
+        //  comunicarse con google sheets
+        google.script.run.aggCliente(
+          nombreCliente,telCliente,kit,xevo,contrato,plan,perfil,tecnicoNombre,comentario
+          
+        )
+}
+  </script>
+
+  <style>
+    form {
+      margin: 0 auto;
+      width: 50%;
+    }
+  </style>
 </body>
+
 </html>
